@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:music_app/presentation/pages/intro_screen.dart';
+import 'package:music_app/presentation/pages/splash_screen.dart';
 
 void main() {
   // for strorage access permission ensureinitialized
@@ -22,7 +22,8 @@ class MainApp extends StatelessWidget {
       //   fontFamily: 'Montserrat',
       // ),
       // home: const HomePage(),
-      home: const IntroScreen(),
+      // home: const IntroScreen(),
+      home: const SplashScreen(),
     );
   }
 }
