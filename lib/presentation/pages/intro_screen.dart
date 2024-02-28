@@ -73,18 +73,18 @@ class IntroductionScreen extends ConsumerWidget {
                     if (granted) {
                       if (kDebugMode) {
                         print('permission is granted');
-                        Future.sync(() => Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ),
-                            (route) => false));
                       }
                     } else {
                       if (kDebugMode) {
                         print('permission denied');
                       }
                     }
+                    Future.sync(() => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                        (route) => false));
                   },
                   child: const Text('Get Started'),
                 ),
