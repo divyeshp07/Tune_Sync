@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/presentation/pages/intro_screen.dart';
 
 void main() {
-  // for strorage access permission
+  // for strorage access permission ensureinitialized
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(const ProviderScope(child: MainApp()));

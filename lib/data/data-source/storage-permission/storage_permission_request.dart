@@ -3,6 +3,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'storage_permission_request.g.dart';
 
+// permission accessing for storage
 class StoragePermission {
   static Future<bool> getStoragepermission(Permission permission) async {
     AndroidDeviceInfo build = await DeviceInfoPlugin().androidInfo;
@@ -28,6 +29,7 @@ class StoragePermission {
   }
 }
 
+// provider
 @riverpod
 Future<bool> storagePermission(
     StoragePermissionRef ref, Permission permission) {

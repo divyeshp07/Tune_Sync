@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:music_app/data/data-source/storage-permission/storage_permission_request.dart';
 
+// Permission request screen
 class IntroScreen extends ConsumerWidget {
   const IntroScreen({super.key});
 
