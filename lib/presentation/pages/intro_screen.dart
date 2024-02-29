@@ -1,9 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:music_app/data/data-source/storage-permission/storage_permission_request.dart';
 import 'package:music_app/presentation/pages/home.screen.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class IntroductionScreen extends ConsumerWidget {
   const IntroductionScreen({super.key});
@@ -51,40 +48,14 @@ class IntroductionScreen extends ConsumerWidget {
               SizedBox(
                 width: 300,
                 height: 70,
-                child:
-                    //  ElevatedButton(
-                    //   onPressed: () {
-                    //     Navigator.pushAndRemoveUntil(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //           builder: (context) => const HomePage(),
-                    //         ),
-                    //         (route) => false);
-                    //   },
-                    //   child: const Text('Get Started'),
-                    // )
-
-                    ElevatedButton(
-                  onPressed: () async {
-                    // Add navigation to the next screen or permission request here
-                    bool granted = await ref.read(
-                        storagePermissionProvider(Permission.storage).future);
-
-                    if (granted) {
-                      if (kDebugMode) {
-                        print('permission is granted');
-                      }
-                    } else {
-                      if (kDebugMode) {
-                        print('permission denied');
-                      }
-                    }
-                    Future.sync(() => Navigator.pushAndRemoveUntil(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const HomePage(),
+                          builder: (context) => HomePage(),
                         ),
-                        (route) => false));
+                        (route) => false);
                   },
                   child: const Text('Get Started'),
                 ),

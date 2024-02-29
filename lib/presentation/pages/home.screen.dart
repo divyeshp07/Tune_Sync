@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/data/data-source/storage-permission/fetch_audio_folder.dart';
 import 'package:music_app/presentation/widgets/bootom_navbar_widget.dart';
-import 'package:music_app/presentation/widgets/drawer_widget.dart';
+import 'package:scroll_to_hide/scroll_to_hide.dart';
 
 class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -103,9 +104,9 @@ class HomePage extends ConsumerWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(32)),
                         child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(data[index].album.toString()),
+                          leading: const CircleAvatar(
+                            // backgroundImage:
+                            //     NetworkImage(data[index].album.toString()),
                             radius: 30,
                           ),
                           title: Text(
@@ -123,7 +124,9 @@ class HomePage extends ConsumerWidget {
                             ],
                           ),
                           trailing: FloatingActionButton.small(
-                            onPressed: () {},
+                            onPressed: () {
+                              // await PlaytheMusic().play(data[index]);
+                            },
                             child: const Icon(Icons.play_arrow),
                           ),
                         ),
@@ -140,7 +143,11 @@ class HomePage extends ConsumerWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-      bottomSheet: const BootomNavWidget(),
+      bottomSheet: ScrollToHide(
+          height: 90,
+          child: BootomNavWidget(),
+          scrollController: _scrollController,
+          hideDirection: Axis.vertical),
     );
   }
 }
