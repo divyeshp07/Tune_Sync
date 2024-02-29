@@ -10,9 +10,6 @@ class SplashScreen extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    // ref.read(storagePermissionProvider(Permission.storage).future);
-
-    // Navigate after checking permission
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => const IntroductionScreen(),
