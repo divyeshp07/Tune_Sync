@@ -6,7 +6,7 @@ part of 'storage_permission_request.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$storagePermissionHash() => r'b6d125164bd69ddd7a759c83d5fc60f9cebe86c3';
+String _$storagePermissionHash() => r'4b3c39da4af32e6126139b64fc58b1cf04d9b45c';
 
 /// Copied from Dart SDK
 class _SystemHash {

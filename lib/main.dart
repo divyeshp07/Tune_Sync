@@ -24,6 +24,7 @@ class MainApp extends StatelessWidget {
       // home: const HomePage(),
       // home: const IntroScreen(),
       home: const SplashScreen(),
+      // home: const DemoScreen(),
     );
   }
 }
