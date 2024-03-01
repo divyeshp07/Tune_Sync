@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:music_app/presentation/pages/song_card_innerview_screen.dart';
 import 'package:music_app/presentation/pages/splash_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -21,6 +22,8 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       home: const SplashScreen(),
+      // home: const FavSongs(),
+      // home: const SongCardInnerScreen(),
     );
   }
 }

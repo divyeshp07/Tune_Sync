@@ -1,12 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/presentation/pages/favsongs_screen.dart';
+import 'package:music_app/presentation/pages/playlist_screen.dart';
 
-class BootomNavWidget extends StatelessWidget {
+class BootomNavWidget extends StatefulWidget {
   const BootomNavWidget({
     super.key,
   });
 
   @override
+  State<BootomNavWidget> createState() => _BootomNavWidgetState();
+}
+
+class _BootomNavWidgetState extends State<BootomNavWidget> {
+  @override
   Widget build(BuildContext context) {
+    int _selectedIndex = 0;
+
+    void _onItemTapped(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+      // Navigate to the corresponding screen based on the index
+      switch (index) {
+        case 0:
+          // Navigate to home screen
+          break;
+        case 1:
+          // Navigate to lyrics screen
+          break;
+        case 2:
+          // Navigate to favorite screen
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FavSongScreen(),
+              ));
+          break;
+        case 3:
+
+          // Navigate to playlist screen
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const PlayListScreen(),
+              ));
+          break;
+        case 4:
+          // Navigate to microphone screen
+          break;
+      }
+    }
+
     return Container(
       height: 105,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -26,6 +70,8 @@ class BootomNavWidget extends StatelessWidget {
         child: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               backgroundColor: Colors.black,
