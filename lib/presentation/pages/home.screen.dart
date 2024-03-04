@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/data/data-source/storage-permission/fetch_audio_folder.dart';
-import 'package:music_app/domain/use-case/music_featurs_case.dart';
 import 'package:music_app/presentation/pages/song_card_innerview_screen.dart';
+import 'package:music_app/presentation/providers/audioPlayer_provider.dart';
 import 'package:music_app/presentation/widgets/bootom_navbar_widget.dart';
-import 'package:music_app/presentation/widgets/popupmenu_widget.dart';
 import 'package:scroll_to_hide/scroll_to_hide.dart';
 
 class HomePage extends ConsumerWidget {
+  bool isPlaying = false; // Track the playback state
+
   HomePage({super.key});
 
   final ScrollController _scrollController = ScrollController();
@@ -24,6 +25,8 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final audioPlayer = ref.watch(playerProvider);
+
     return Scaffold(
       body: ref.watch(fetchaudiofilesProvider).when(
             data: (data) {
@@ -129,8 +132,9 @@ class HomePage extends ConsumerWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      const SongCardInnerScreen(),
+                                  builder: (context) => SongCardInnerScreen(
+                                    songindex: index,
+                                  ),
                                 ));
                           },
                           child: Card(
@@ -161,10 +165,21 @@ class HomePage extends ConsumerWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   FloatingActionButton.small(
-                                    onPressed: () async {
-                                      await MusicFeatures().play(data[index]);
+                                    onPressed: () {
+                                      audioPlayer.setFilePath(data[index].data);
+                                      if (isPlaying) {
+                                        // If the song is currently playing, pause it
+                                        audioPlayer.pause();
+                                      } else {
+                                        // If the song is not playing, start playback
+                                        audioPlayer.play();
+                                      }
+                                      // Toggle the playback state
+                                      isPlaying = !isPlaying;
                                     },
-                                    child: const Icon(Icons.play_arrow),
+                                    child: isPlaying
+                                        ? const Icon(Icons.pause)
+                                        : const Icon(Icons.play_arrow),
                                   ),
                                   PopupMenuButton(
                                     surfaceTintColor: Colors.white,
@@ -172,10 +187,6 @@ class HomePage extends ConsumerWidget {
                                         0, 50), // Adjust offset as needed
                                     itemBuilder: (BuildContext context) {
                                       return [
-                                        // PopupMenuItemWidget(onTap: onTap, value: value, icon: icon, text: text)
-                                        // PopupMenuItemWidget(onTap: onTap, value: value, icon: icon, text: text)
-                                        // PopupMenuItemWidget(onTap: onTap, value: value, icon: icon, text: text)
-                                        // PopupMenuItemWidget(onTap: onTap, value: value, icon: icon, text: text)
                                         const PopupMenuItem(
                                           value: 'Share',
                                           child: Row(

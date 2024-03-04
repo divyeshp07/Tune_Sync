@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:text_scroll/text_scroll.dart';
 
-class SongCardInnerScreen extends StatelessWidget {
-  const SongCardInnerScreen({super.key});
+class SongCardInnerScreen extends ConsumerWidget {
+  int songindex;
+
+  SongCardInnerScreen({
+    super.key,
+    required this.songindex,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Column(
         children: [
@@ -20,12 +26,12 @@ class SongCardInnerScreen extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.favorite),
+                  icon: const Icon(Icons.favorite),
                 ),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Center(
@@ -47,7 +53,7 @@ class SongCardInnerScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           // Row(
@@ -58,8 +64,8 @@ class SongCardInnerScreen extends StatelessWidget {
           //     ),
           //   ],
           // ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
             child: SizedBox(
               child: TextScroll(
                 'This is the sample text for Flutter TextScroll widget gdhdljdqwjj ',
@@ -69,7 +75,7 @@ class SongCardInnerScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
@@ -96,20 +102,20 @@ class SongCardInnerScreen extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.skip_previous_rounded,
                         size: 40,
                       )),
                   FloatingActionButton.large(
                     onPressed: () {},
-                    child: Icon(
+                    child: const Icon(
                       Icons.pause,
                       size: 50,
                     ),
                   ),
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.skip_next_rounded,
                         size: 40,
                       ))
@@ -118,8 +124,8 @@ class SongCardInnerScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(onPressed: () {}, icon: Icon(Icons.repeat)),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.shuffle)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.repeat)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.shuffle)),
                 ],
               ),
             ],
