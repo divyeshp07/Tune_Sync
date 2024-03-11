@@ -8,6 +8,10 @@ AudioPlayer audioPlayer(AudioPlayerRef ref) {
 }
 
 // / is playing or not
-final toogleprovider = Provider<bool>(
-  (ref) => ref.watch(audioPlayerProvider).playing,
-);
+// final toogleprovider = StateProvider<int>((ref) => -1);
+
+final currentIndexProvider =
+    Provider<int?>((ref) => ref.read(audioPlayerProvider).currentIndex);
+
+final isPlayingProvider =
+    Provider<bool>((ref) => ref.read(audioPlayerProvider).playing);

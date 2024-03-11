@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/presentation/pages/favsongs_screen.dart';
 import 'package:music_app/presentation/pages/playlist_screen.dart';
 
 class BootomNavWidget extends StatefulWidget {
@@ -30,11 +29,8 @@ class _BootomNavWidgetState extends State<BootomNavWidget> {
           break;
         case 2:
           // Navigate to favorite screen
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const FavSongScreen(),
-              ));
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => FavSongScreen()));
           break;
         case 3:
 
@@ -84,23 +80,23 @@ class _BootomNavWidgetState extends State<BootomNavWidget> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.lyrics,
+                Icons.search,
                 color: Colors.white,
-                size: 26,
+                size: 29,
               ),
               label: '',
             ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(
+            //     Icons.favorite,
+            //     color: Colors.white,
+            //     size: 30,
+            //   ),
+            //   label: '',
+            // ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.favorite,
-                color: Colors.white,
-                size: 30,
-              ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.playlist_add,
+                Icons.library_music,
                 color: Colors.white,
                 size: 26,
               ),

@@ -207,12 +207,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:music_app/data/data-source/storage-permission/fetch_audio_folder.dart';
 import 'package:music_app/data/model/song_entity.dart';
 import 'package:music_app/domain/use-case/fav_add_remove_use_case.dart';
+import 'package:music_app/presentation/pages/favsongs_screen.dart';
+import 'package:music_app/presentation/pages/llibrary_screen.dart';
 import 'package:music_app/presentation/pages/song_card_innerview_screen.dart';
 import 'package:music_app/presentation/providers/audio_player_provider.dart';
-import 'package:music_app/presentation/providers/is_favorate.dart';
 import 'package:music_app/presentation/widgets/bootom_navbar_widget.dart';
 import 'package:scroll_to_hide/scroll_to_hide.dart';
 
@@ -224,26 +226,39 @@ class HomePage extends ConsumerWidget {
     ScrollController scrollController = ScrollController();
     // ref.invalidate(toogleprovider);
     // ref.invalidate(audioPlayerProvider);
-    final audioPlayer = ref.watch(audioPlayerProvider);
+    // final audioPlayer = ref.watch(audioPlayerProvider);
+
+    ref.watch(audioPlayerProvider).positionStream.listen(
+      (_) {
+        ref.invalidate(currentIndexProvider);
+        ref.invalidate(isPlayingProvider);
+      },
+    );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: ref.watch(fetchaudiofilesProvider).when(
               data: (data) {
+                final playlist = ConcatenatingAudioSource(
+                  // Specify the playlist items
+                  children: data.map((audioFile) {
+                    return AudioSource.uri(Uri.parse(audioFile.data));
+                  }).toList(),
+                );
                 return CustomScrollView(
                   slivers: [
                     SliverAppBar(
                       leading: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const LiabraryWidget()));
+                        },
                         icon: const Icon(Icons.menu),
                       ),
-                      actions: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.search),
-                        ),
-                      ],
                       pinned: true,
                       expandedHeight: 340.0,
                       flexibleSpace: ClipRRect(
@@ -253,7 +268,9 @@ class HomePage extends ConsumerWidget {
                         ),
                         child: FlexibleSpaceBar(
                           title: Padding(
-                            padding: const EdgeInsets.only(left: 30.8),
+                            padding: const EdgeInsets.only(
+                              left: 45.8,
+                            ),
                             child: Text(
                               'Tidal',
                               textAlign: TextAlign.center,
@@ -310,6 +327,9 @@ class HomePage extends ConsumerWidget {
                           padding: const EdgeInsets.only(top: 14),
                           child: GestureDetector(
                             onTap: () {
+                              // FIXME:
+                              // BUG:
+                              // NOTE:
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -351,23 +371,32 @@ class HomePage extends ConsumerWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       FloatingActionButton.small(
-                                          heroTag: 'card',
-                                          onPressed: () async {
-                                            audioPlayer
-                                                .setFilePath(data[index].data);
-                                            ref
-                                                    .read(audioPlayerProvider)
-                                                    .playing
-                                                ? await ref
-                                                    .read(audioPlayerProvider)
-                                                    .pause()
-                                                : await ref
-                                                    .read(audioPlayerProvider)
-                                                    .play();
-                                          },
-                                          child: ref.watch(toogleprovider)
-                                              ? const Icon(Icons.pause)
-                                              : const Icon(Icons.play_arrow)),
+                                        heroTag: 'card',
+                                        onPressed: () async {
+                                          ref
+                                              .read(audioPlayerProvider)
+                                              .setAudioSource(playlist,
+                                                  initialIndex: index);
+
+                                          if (ref.read(isPlayingProvider) &&
+                                              ref.read(currentIndexProvider) ==
+                                                  index) {
+                                            await ref
+                                                .read(audioPlayerProvider)
+                                                .pause();
+                                          } else {
+                                            await ref
+                                                .read(audioPlayerProvider)
+                                                .play();
+                                          }
+                                        },
+                                        child: ref.watch(isPlayingProvider) &&
+                                                ref.watch(
+                                                        currentIndexProvider) ==
+                                                    index
+                                            ? const Icon(Icons.pause)
+                                            : const Icon(Icons.play_arrow),
+                                      ),
                                       PopupMenuButton(
                                         color: Colors.black26,
                                         surfaceTintColor: Colors.white,
@@ -389,10 +418,6 @@ class HomePage extends ConsumerWidget {
                                             ),
                                             PopupMenuItem(
                                               onTap: () {
-                                                // ref.read(
-                                                //         isFavProvider(data: ''))
-                                                // ?
-
                                                 ref
                                                     .read(musicDbProvider
                                                         .notifier)
@@ -402,6 +427,14 @@ class HomePage extends ConsumerWidget {
                                                           .toString(),
                                                       title: data[index].title,
                                                     ));
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  const SnackBar(
+                                                      backgroundColor:
+                                                          Colors.blue,
+                                                      content: Text(
+                                                          'Added to Favorites')),
+                                                );
                                                 ref.invalidate(musicDbProvider);
                                               },
                                               value: 'Favorite',

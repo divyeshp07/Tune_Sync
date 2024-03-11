@@ -192,10 +192,6 @@ class SongCardBtnsWidget extends ConsumerWidget {
     return ref.watch(fetchaudiofilesProvider).when(
           data: (data) {
             final playlist = ConcatenatingAudioSource(
-              // Start loading next item just before reaching it
-              useLazyPreparation: true,
-              // Customise the shuffle algorithm
-              shuffleOrder: DefaultShuffleOrder(),
               // Specify the playlist items
               children: data.map((audioFile) {
                 return AudioSource.uri(Uri.parse(audioFile.data));
@@ -217,15 +213,22 @@ class SongCardBtnsWidget extends ConsumerWidget {
                       ),
                     ),
                     FloatingActionButton.large(
-                      heroTag: 'card inner',
+                      heroTag: 'inner',
                       onPressed: () async {
                         audioplayer.playing
-                            ? audioplayer.play()
-                            : audioplayer.pause();
+                            ? audioplayer.pause()
+                            : audioplayer.play();
+                        ref.invalidate(isPlayingProvider);
                       },
-                      child: audioplayer.playing
-                          ? const Icon(Icons.pause)
-                          : const Icon(Icons.play_arrow),
+                      child: ref.watch(isPlayingProvider)
+                          ? const Icon(
+                              Icons.pause,
+                              size: 55,
+                            )
+                          : const Icon(
+                              Icons.play_arrow,
+                              size: 55,
+                            ),
                     ),
                     IconButton(
                       onPressed: () {
