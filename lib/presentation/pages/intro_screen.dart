@@ -50,12 +50,11 @@ class IntroductionScreen extends ConsumerWidget {
                 height: 70,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomePage(),
-                        ),
-                        (route) => false);
+                          builder: (context) => const HomePage(),
+                        ));
                   },
                   child: const Text('Get Started'),
                 ),

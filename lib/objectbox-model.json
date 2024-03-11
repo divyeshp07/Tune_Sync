@@ -4,41 +4,36 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:7354787098556460018",
-      "lastPropertyId": "5:5143016456575136959",
+      "id": "1:4370087881582007380",
+      "lastPropertyId": "4:7148268261775448101",
       "name": "SongsEntity",
       "properties": [
         {
-          "id": "1:2110218657204287105",
+          "id": "1:3208576110498297933",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:8702853324994736395",
+          "id": "2:1897893037322491910",
           "name": "title",
           "type": 9
         },
         {
-          "id": "3:404270444092560816",
+          "id": "3:5814381410611901454",
           "name": "auther",
           "type": 9
         },
         {
-          "id": "4:5610183809942828993",
-          "name": "uri",
-          "type": 9
-        },
-        {
-          "id": "5:5143016456575136959",
-          "name": "image",
+          "id": "4:7148268261775448101",
+          "name": "data",
           "type": 9
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:7354787098556460018",
+  "lastEntityId": "1:4370087881582007380",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

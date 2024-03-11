@@ -1,149 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:music_app/presentation/widgets/progressbar_widget.dart';
+import 'package:music_app/presentation/widgets/songcardinnerviewbuttons_widget.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class SongCardInnerScreen extends ConsumerWidget {
-  int songindex;
-
-  SongCardInnerScreen({
-    super.key,
-    required this.songindex,
-  });
+  final String displaytext;
+  const SongCardInnerScreen({super.key, required this.displaytext});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: Column(
+      body: Stack(
+        clipBehavior: Clip.none,
+        fit: StackFit.expand,
         children: [
-          const SizedBox(
-            height: 100,
+          Container(
+            color: Colors.amber,
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.favorite),
+          ShaderMask(
+            shaderCallback: (rect) {
+              return LinearGradient(
+                colors: [
+                  Colors.white,
+                  Colors.white.withOpacity(0.5),
+                  Colors.white.withOpacity(0.0)
+                ],
+                stops: const [0.0, 0.4, 0.6],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ).createShader(rect);
+            },
+            blendMode: BlendMode.dstOut,
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.deepPurple, Colors.deepPurpleAccent],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Center(
-            child: Column(
-              children: [
-                Container(
-                  width: 300,
-                  height: 300,
-                  color: Colors.amber,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 50,
-                  width: 300,
-                  color: Colors.amber,
-                )
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          // Row(
-          //   children: [
-          //     Text(
-          //       'ghdddhldjlkljlhkjbjvjbvbndcvb nmdg mdghjnkgjnd bh',
-          //       style: TextStyle(fontSize: 20),
-          //     ),
-          //   ],
-          // ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
-            child: SizedBox(
-              child: TextScroll(
-                'This is the sample text for Flutter TextScroll widget gdhdljdqwjj ',
-                style: TextStyle(fontSize: 20),
-                mode: TextScrollMode.endless,
-                velocity: Velocity(pixelsPerSecond: Offset(40, 0)),
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 33),
-            child: ProgressBar(
-              progress: const Duration(milliseconds: 1000),
-              buffered: const Duration(milliseconds: 2000),
-              total: const Duration(milliseconds: 5000),
-              progressBarColor: Colors.red,
-              baseBarColor: Colors.white.withOpacity(0.24),
-              bufferedBarColor: Colors.white.withOpacity(0.24),
-              thumbColor: Colors.white,
-              barHeight: 3.0,
-              thumbRadius: 5.0,
-              onSeek: (duration) {
-                print('User selected a new time: $duration');
-              },
-            ),
-          ),
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+          Positioned(
+            bottom: 20,
+            right: 22,
+            child: SizedBox(
+              width: 350,
+              height: 250,
+              child: Column(
                 children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.skip_previous_rounded,
-                        size: 40,
-                      )),
-                  FloatingActionButton.large(
-                    onPressed: () {},
-                    child: const Icon(
-                      Icons.pause,
-                      size: 50,
+                  SizedBox(
+                    child: TextScroll(
+                      displaytext,
+                      style: const TextStyle(fontSize: 20),
+                      mode: TextScrollMode.endless,
+                      velocity: const Velocity(pixelsPerSecond: Offset(40, 0)),
                     ),
                   ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.skip_next_rounded,
-                        size: 40,
-                      ))
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const ProgressbarWidget(),
+                  const SongCardBtnsWidget(),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.repeat)),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.shuffle)),
-                ],
-              ),
-            ],
-          )
-          // ProgressBar(
-          //   progress: progress,
-          //   buffered: buffered,
-          //   total: total,
-          //   progressBarColor: Colors.red,
-          //   baseBarColor: Colors.white.withOpacity(0.24),
-          //   bufferedBarColor: Colors.white.withOpacity(0.24),
-          //   thumbColor: Colors.white,
-          //   barHeight: 3.0,
-          //   thumbRadius: 5.0,
-          //   onSeek: (duration) {
-          //     // _player.seek(duration);
-          //   },
-          // )
+            ),
+          ),
         ],
       ),
     );

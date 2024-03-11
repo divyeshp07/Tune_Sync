@@ -4,14 +4,10 @@ import 'package:objectbox/objectbox.dart';
 class SongsEntity {
   @Id()
   int id = 0;
-  String title;
-  String auther;
-  String uri;
-  String image;
+  String? title;
+  String? auther;
+  String? data;
+
   SongsEntity(
-      {required this.auther,
-      required this.id,
-      required this.image,
-      required this.title,
-      required this.uri});
+      {required this.auther, this.id = 0, required this.title, this.data});
 }

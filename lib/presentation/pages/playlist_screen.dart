@@ -8,13 +8,13 @@ class PlayListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Icon(
+        title: const Icon(
           Icons.favorite,
           color: Colors.white,
         ),
       ),
       body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10, // Adjust as needed
           mainAxisSpacing: 10, // Adjust as needed
@@ -24,7 +24,7 @@ class PlayListScreen extends StatelessWidget {
             color: Colors.amber,
             width: MediaQuery.of(context).size.width / 2 -
                 15, // Adjust width based on crossAxisSpacing
-            child: ListTile(
+            child: const ListTile(
               leading: CircleAvatar(),
               title: Text('title'),
               subtitle: Text('subtitle'),
@@ -35,17 +35,5 @@ class PlayListScreen extends StatelessWidget {
         itemCount: 5,
       ),
     );
-
-    // body: ListView.separated(
-    //     itemBuilder: (context, index) => ListTile(
-    //           leading: CircleAvatar(),
-    //           title: Text('title'),
-    //           subtitle: Text('subtitle'),
-    //           trailing: Icon(Icons.cancel),
-    //         ),
-    //     separatorBuilder: (context, index) => SizedBox(
-    //           height: 10,
-    //         ),
-    //     itemCount: 5),
   }
 }

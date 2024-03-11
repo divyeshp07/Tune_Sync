@@ -14,11 +14,11 @@ class BootomNavWidget extends StatefulWidget {
 class _BootomNavWidgetState extends State<BootomNavWidget> {
   @override
   Widget build(BuildContext context) {
-    int _selectedIndex = 0;
+    int selectedIndex = 0;
 
-    void _onItemTapped(int index) {
+    void onItemTapped(int index) {
       setState(() {
-        _selectedIndex = index;
+        selectedIndex = index;
       });
       // Navigate to the corresponding screen based on the index
       switch (index) {
@@ -70,8 +70,8 @@ class _BootomNavWidgetState extends State<BootomNavWidget> {
         child: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
+          currentIndex: selectedIndex,
+          onTap: onItemTapped,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               backgroundColor: Colors.black,

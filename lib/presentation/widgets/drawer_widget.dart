@@ -68,7 +68,7 @@ class DrawerWidget extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomePage(),
+                      builder: (context) => const HomePage(),
                     ));
                 Navigator.pop(context);
               }),
