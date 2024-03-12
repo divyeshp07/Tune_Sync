@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/presentation/pages/favsongs_screen.dart';
 
-class LiabraryWidget extends StatelessWidget {
-  const LiabraryWidget({super.key});
+class LiabraryScreen extends StatelessWidget {
+  const LiabraryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

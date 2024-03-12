@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/data/data-source/objectBox/objectbox_impl.dart';
 import 'package:music_app/presentation/pages/home.screen.dart';
-import 'package:music_app/presentation/pages/llibrary_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
@@ -27,6 +26,7 @@ class MainApp extends StatelessWidget {
       // home: const SplashScreen(),
       home: const HomePage(),
       // home: const LiabraryWidget(),
+      // home: const BootomNavWidget(),
     );
   }
 }
