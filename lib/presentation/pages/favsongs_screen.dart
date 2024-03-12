@@ -60,7 +60,6 @@ class FavSongScreen extends ConsumerWidget {
                     title: Text(
                       favSongs[index].title.toString(),
                       style: const TextStyle(
-                        fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                       maxLines: 2,

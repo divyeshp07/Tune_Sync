@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/presentation/pages/song_card_innerview_screen.dart';
 import 'package:music_app/presentation/providers/search_provider.dart';
+import 'package:music_app/presentation/widgets/listtile_card_widget.dart';
 
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -10,11 +12,8 @@ class SearchPage extends ConsumerWidget {
     super.key,
   });
 
-  ///controller for scrolling the bottom navigation bar
-  final ScrollController scrollController = ScrollController();
-
   /// controller for search section
-  final TextEditingController textEditingController = TextEditingController();
+  final TextEditingController searchtextController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,50 +34,54 @@ class SearchPage extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
-                controller: textEditingController,
+                controller: searchtextController,
                 onChanged: (value) {
-                  ref.read(searchProvider.notifier).searchSongs(search: value);
+                  ref
+                      .read(searchProvider.notifier)
+                      .searchSongs(searchtext: value);
                 },
                 decoration: InputDecoration(
-                  hintText: 'Search...',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: () {
-                      // Implement search functionality
-                      // ref
-                      //     .read(searchProvider.notifier)
-                      //     .searchSongs(search: );
-                    },
-                  ),
-                ),
+                    hintText: 'Search Here...',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    suffixIcon: const Icon(Icons.search)),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 5),
               child: ref.watch(searchProvider).isEmpty
                   ? const Center(
-                      child: Text('search......!'),
+                      child: Image(
+                        image: AssetImage(
+                            'assets/images/search-result-not-found-2130355-1800920.png'),
+                        width: 100 * 3,
+                        height: 100 * 3,
+                      ),
                     )
                   : ListView.builder(
                       shrinkWrap: true,
                       itemCount: ref.watch(searchProvider).length,
-                      controller: scrollController,
                       itemBuilder: (context, index) {
                         final List<SongModel> result =
                             ref.watch(searchProvider);
-                        return ListTile(
-                          title: Text(result[index].data),
-                          subtitle: Text(result[index].artist ?? 'unknown'),
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SongCardInnerScreen(
+                                    displaytext: result[index].title +
+                                        result[index].artist.toString() +
+                                        result[index].title),
+                              ),
+                            );
+                          },
+                          child: Card(
+                              child: Listtile_widget(
+                                  title: result[index].title,
+                                  artist: result[index].artist ?? 'unknown')),
                         );
-                        // return PlayListTile(
-                        //     title: result[index].title,
-                        //     artist: result[index].artist ?? 'unknown',
-                        //     data: result[index].data,
-                        //     index: index,
-                        //     isPlayingFromFav: false);
                       },
                     ),
             )

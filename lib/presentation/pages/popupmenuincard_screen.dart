@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PopupMenuWidget extends StatelessWidget {
+class PopupmenuScreen extends ConsumerWidget {
   final Function() share;
+  final Function() addtoplaylist;
   final Function() addtofav;
-  final Function() addtoplayist;
-  final Function() delete;
-  const PopupMenuWidget({
-    super.key,
-    required this.share,
-    required this.addtofav,
-    required this.addtoplayist,
-    required this.delete,
-  });
+  final Function()? delete;
+
+  const PopupmenuScreen(
+      {super.key,
+      required this.addtofav,
+      required this.addtoplaylist,
+      required this.delete,
+      required this.share});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PopupMenuButton(
+      color: Colors.black26,
       surfaceTintColor: Colors.white,
       offset: const Offset(0, 50),
       itemBuilder: (BuildContext context) {
         return [
           PopupMenuItem(
-            onTap: () {},
+            onTap: share,
             value: 'Share',
             child: const Row(
               children: [
@@ -32,7 +34,7 @@ class PopupMenuWidget extends StatelessWidget {
             ),
           ),
           PopupMenuItem(
-            onTap: () {},
+            onTap: addtofav,
             value: 'Favorite',
             child: const Row(
               children: [
@@ -43,7 +45,7 @@ class PopupMenuWidget extends StatelessWidget {
             ),
           ),
           PopupMenuItem(
-            onTap: addtoplayist,
+            onTap: addtoplaylist,
             value: 'AddToPlaylist',
             child: const Row(
               children: [
@@ -54,7 +56,7 @@ class PopupMenuWidget extends StatelessWidget {
             ),
           ),
           PopupMenuItem(
-            onTap: () {},
+            onTap: delete,
             value: 'Delete',
             child: const Row(
               children: [

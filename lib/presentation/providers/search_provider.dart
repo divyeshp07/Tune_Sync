@@ -4,21 +4,19 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'search_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Search extends _$Search {
   @override
   List<SongModel> build() {
     return [];
   }
 
-  void searchSongs({required String search}) async {
-    // log('message');
+  void searchSongs({required String searchtext}) async {
     List<SongModel> data = await FetchAudioFileSource().fetchAudios();
-    RegExp regExp = RegExp(search, caseSensitive: false);
+    RegExp regExp = RegExp(searchtext, caseSensitive: false);
     state = [
       for (SongModel model in data)
         if (regExp.hasMatch(model.title)) model
     ];
-    // log(state.toString());
   }
 }

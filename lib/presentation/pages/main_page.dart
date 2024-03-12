@@ -3,7 +3,6 @@ import 'package:music_app/presentation/pages/home.screen.dart';
 import 'package:music_app/presentation/pages/llibrary_screen.dart';
 import 'package:music_app/presentation/pages/search_screen.dart';
 import 'package:music_app/presentation/widgets/bootom_navbar_widget.dart';
-import 'package:scroll_to_hide/scroll_to_hide.dart';
 
 final List<Widget> pages = [
   const HomePage(),
