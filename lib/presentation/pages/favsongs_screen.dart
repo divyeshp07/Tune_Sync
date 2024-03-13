@@ -19,7 +19,7 @@ class FavSongScreen extends ConsumerWidget {
         title: const Text('My Favorites'),
       ),
       body: favSongs.isEmpty
-          ? Center(
+          ? const Center(
               child: Text(
                 'No favorite songs',
                 style: TextStyle(
@@ -34,11 +34,12 @@ class FavSongScreen extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SongCardInnerScreen(
-                              displaytext: favSongs[index].title.toString() +
-                                  favSongs[index].auther.toString() +
-                                  favSongs[index].title.toString(),
-                            )),
+                      builder: (context) => SongCardInnerScreen(
+                        displaytext: favSongs[index].title.toString() +
+                            favSongs[index].auther.toString() +
+                            favSongs[index].title.toString(),
+                      ),
+                    ),
                   );
                 },
                 child: Card(

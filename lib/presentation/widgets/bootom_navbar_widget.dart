@@ -59,6 +59,14 @@ class BottomNavBar extends StatelessWidget {
               ),
               label: '',
             ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.adb_outlined,
+                color: Colors.white,
+                size: 26,
+              ),
+              label: '',
+            ),
           ],
         ),
       ),

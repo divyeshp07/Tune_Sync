@@ -9,7 +9,7 @@ class LibraryScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myplaylist = ref.watch(playlistProvider);
+    final myplaylist = ref.watch(playlistCreateDeleteProvider);
     TextEditingController playlistnameController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
@@ -98,7 +98,7 @@ class LibraryScreen extends ConsumerWidget {
                             onPressed: () {
                               Navigator.pop(context);
                               ref
-                                  .read(playlistProvider.notifier)
+                                  .read(playlistCreateDeleteProvider.notifier)
                                   .createplaylist(
                                       playlistname:
                                           playlistnameController.text);
@@ -147,14 +147,14 @@ class LibraryScreen extends ConsumerWidget {
                             fontSize: 18,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                             onPressed: () {
                               ref
-                                  .read(playlistProvider.notifier)
+                                  .read(playlistCreateDeleteProvider.notifier)
                                   .deleteplaylist(index);
                             },
-                            icon: Icon(Icons.delete_forever))
+                            icon: const Icon(Icons.delete_forever))
                       ],
                     ),
                   ),

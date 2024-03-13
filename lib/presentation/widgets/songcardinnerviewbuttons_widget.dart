@@ -191,12 +191,12 @@ class SongCardBtnsWidget extends ConsumerWidget {
     final audioplayer = ref.watch(audioPlayerProvider);
     return ref.watch(fetchaudiofilesProvider).when(
           data: (data) {
-            final playlist = ConcatenatingAudioSource(
-              // Specify the playlist items
-              children: data.map((audioFile) {
-                return AudioSource.uri(Uri.parse(audioFile.data));
-              }).toList(),
-            );
+            // final playlist = ConcatenatingAudioSource(
+            //   // Specify the playlist items
+            //   children: data.map((audioFile) {
+            //     return AudioSource.uri(Uri.parse(audioFile.data));
+            //   }).toList(),
+            // );
             return Column(
               children: [
                 Row(
@@ -204,7 +204,7 @@ class SongCardBtnsWidget extends ConsumerWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        audioplayer.setAudioSource(playlist);
+                        // audioplayer.setAudioSource(playlist);
                         audioplayer.seekToPrevious();
                       },
                       icon: const Icon(
@@ -232,7 +232,7 @@ class SongCardBtnsWidget extends ConsumerWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        audioplayer.setAudioSource(playlist);
+                        // audioplayer.setAudioSource(playlist);
                         audioplayer.seekToNext();
                       },
                       icon: const Icon(
@@ -250,7 +250,7 @@ class SongCardBtnsWidget extends ConsumerWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        audioplayer.setAudioSource(playlist);
+                        // audioplayer.setAudioSource(playlist);
                         audioplayer.setShuffleModeEnabled(true);
                       },
                       icon: const Icon(Icons.shuffle),

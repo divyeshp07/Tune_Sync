@@ -7,6 +7,7 @@ import 'package:music_app/domain/use-case/fav_add_remove_use_case.dart';
 import 'package:music_app/presentation/pages/popupmenuincard_screen.dart';
 import 'package:music_app/presentation/pages/song_card_innerview_screen.dart';
 import 'package:music_app/presentation/providers/audio_player_provider.dart';
+import 'package:music_app/presentation/providers/play_list_provider.dart';
 import 'package:music_app/presentation/widgets/listtile_card_widget.dart';
 import 'package:music_app/presentation/widgets/sliverappbar_widget.dart';
 
@@ -25,13 +26,16 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       body: ref.watch(fetchaudiofilesProvider).when(
             data: (data) {
+              List<String> listOfData = data.map((e) => e.data).toList();
               // creating a playlist for gaplessplay
-              final playlist = ConcatenatingAudioSource(
-                // Specify the playlist items
-                children: data.map((audioFile) {
-                  return AudioSource.uri(Uri.parse(audioFile.data));
-                }).toList(),
-              );
+              final ConcatenatingAudioSource playlist =
+                  ConcatenatingAudioSource(
+                      // Specify the playlist items
+                      // children: data.map((audioFile) {
+                      //   return AudioSource.uri(Uri.parse(audioFile.data));
+                      // }).toList(),
+                      children:
+                          ref.read(getPlayListProvider(data: listOfData)));
               return CustomScrollView(
                 slivers: [
                   SliverAppBarWidget(leadingOnTap: () {}),
@@ -41,6 +45,9 @@ class HomePage extends ConsumerWidget {
                         padding: const EdgeInsets.only(top: 14),
                         child: GestureDetector(
                           onTap: () {
+                            ref
+                                .read(audioPlayerProvider)
+                                .setAudioSource(playlist, initialIndex: index);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -62,6 +69,8 @@ class HomePage extends ConsumerWidget {
                                   title: data[index].title,
                                   artist: data[index].artist.toString(),
                                   leading: CircleAvatar(
+                                    backgroundImage: AssetImage(
+                                        'assets/images/firemusic.jpg'),
                                     radius: 27,
                                   ),
                                   trailing: Row(

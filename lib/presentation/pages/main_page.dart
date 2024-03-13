@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/presentation/pages/about_screen.dart';
 import 'package:music_app/presentation/pages/home.screen.dart';
 import 'package:music_app/presentation/pages/llibrary_screen.dart';
 import 'package:music_app/presentation/pages/search_screen.dart';
@@ -8,6 +9,7 @@ final List<Widget> pages = [
   const HomePage(),
   SearchPage(),
   const LibraryScreen(),
+  AboutScreen()
 ];
 
 class MainPage extends StatefulWidget {

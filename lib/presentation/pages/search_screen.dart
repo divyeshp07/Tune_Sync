@@ -1,7 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:music_app/presentation/pages/song_card_innerview_screen.dart';
+import 'package:music_app/presentation/providers/audio_player_provider.dart';
+import 'package:music_app/presentation/providers/create_playlist_provider.dart';
+import 'package:music_app/presentation/providers/play_list_provider.dart';
 import 'package:music_app/presentation/providers/search_provider.dart';
 import 'package:music_app/presentation/widgets/listtile_card_widget.dart';
 
@@ -17,6 +23,9 @@ class SearchPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final ConcatenatingAudioSource serchingplaylist = ConcatenatingAudioSource(
+        children: ref.read(getPlayListProvider(
+            data: ref.read(searchProvider).map((e) => e.data).toList())));
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -67,6 +76,10 @@ class SearchPage extends ConsumerWidget {
                             ref.watch(searchProvider);
                         return InkWell(
                           onTap: () {
+                            log(ref.read(searchProvider).length.toString());
+                            ref.read(audioPlayerProvider).setAudioSource(
+                                serchingplaylist,
+                                initialIndex: index);
                             Navigator.push(
                               context,
                               MaterialPageRoute(

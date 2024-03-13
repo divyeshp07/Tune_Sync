@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'create_playlist_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-class Playlist extends _$Playlist {
+class PlaylistCreateDelete extends _$PlaylistCreateDelete {
   @override
   List build() {
     return [];
@@ -13,6 +13,6 @@ class Playlist extends _$Playlist {
   }
 
   void deleteplaylist(int index) {
-    state.removeAt(index);
+    state = List.from(state)..removeAt(index);
   }
 }
