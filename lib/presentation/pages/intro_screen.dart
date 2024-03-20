@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:music_app/main.dart';
 import 'package:music_app/presentation/pages/home.screen.dart';
 
 class IntroductionScreen extends ConsumerWidget {
@@ -53,7 +54,7 @@ class IntroductionScreen extends ConsumerWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const HomePage(),
+                          builder: (context) => const MainApp(),
                         ));
                   },
                   child: const Text('Get Started'),

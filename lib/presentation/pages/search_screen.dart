@@ -84,9 +84,8 @@ class SearchPage extends ConsumerWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => SongCardInnerScreen(
-                                    displaytext: result[index].title +
-                                        result[index].artist.toString() +
-                                        result[index].title),
+                                    displaytext:
+                                        result.map((e) => e.title).toList()),
                               ),
                             );
                           },

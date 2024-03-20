@@ -19,8 +19,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Lottie.asset('assets/lottie/Animation - 1709099816391.json',
-            fit: BoxFit.cover),
+        child: Image.asset('assets/images/ic_launcher.png'),
       ),
     );
   }

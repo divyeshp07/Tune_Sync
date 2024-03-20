@@ -35,10 +35,7 @@ class FavSongScreen extends ConsumerWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => SongCardInnerScreen(
-                        displaytext: favSongs[index].title.toString() +
-                            favSongs[index].auther.toString() +
-                            favSongs[index].title.toString(),
-                      ),
+                          displaytext: favSongs.map((e) => e.title!).toList()),
                     ),
                   );
                 },

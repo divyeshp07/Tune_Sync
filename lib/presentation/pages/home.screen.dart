@@ -53,9 +53,7 @@ class HomePage extends ConsumerWidget {
                               MaterialPageRoute(
                                 builder: (context) => SongCardInnerScreen(
                                     displaytext:
-                                        data[index].displayName.toString() +
-                                            data[index].artist.toString() +
-                                            data[index].title.toString()),
+                                        data.map((e) => e.title).toList()),
                               ),
                             );
                           },
