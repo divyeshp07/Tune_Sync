@@ -65,10 +65,11 @@ class HomePage extends ConsumerWidget {
                                     borderRadius: BorderRadius.circular(32)),
                                 child: Listtile_widget(
                                   title: data[index].title,
-                                  artist: data[index].artist.toString(),
-                                  leading: CircleAvatar(
+                                  artist: data[index].artist?.toString() ??
+                                      '<unknown>',
+                                  leading: const CircleAvatar(
                                     backgroundImage: AssetImage(
-                                        'assets/images/firemusic.jpg'),
+                                        'assets/images/ic_launcher.png'),
                                     radius: 27,
                                   ),
                                   trailing: Row(
@@ -102,12 +103,13 @@ class HomePage extends ConsumerWidget {
                                             : const Icon(Icons.play_arrow),
                                       ),
                                       PopupmenuScreen(
-                                          delete: () {},
-                                          share: () {},
+                                          // delete: () {},
+                                          // share: () {},
                                           addtoplaylist: () {},
                                           addtofav: () {
                                             ref
-                                                .read(musicDbProvider.notifier)
+                                                .read(
+                                                    faveSongDbProvider.notifier)
                                                 .addSongs(SongsEntity(
                                                   auther: data[index]
                                                       .artist
@@ -117,12 +119,18 @@ class HomePage extends ConsumerWidget {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               const SnackBar(
-                                                backgroundColor: Colors.blue,
-                                                content:
-                                                    Text('Added to Favorites'),
+                                                // clipBehavior: Clip.antiAlias,
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                backgroundColor: Colors.green,
+                                                content: Text(
+                                                  'Added to Favorites',
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
                                               ),
                                             );
-                                            ref.invalidate(musicDbProvider);
+                                            ref.invalidate(faveSongDbProvider);
                                           })
                                     ],
                                   ),

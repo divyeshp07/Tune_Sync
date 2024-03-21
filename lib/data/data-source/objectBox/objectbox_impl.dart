@@ -5,9 +5,11 @@ import 'package:path_provider/path_provider.dart';
 
 class ObjectBoxImpl {
   late final Store store;
-  static late final Box<SongsEntity> box;
+  static late final Box<SongsEntity> likedsong;
+  static late final Box<SongsEntity> playlistsong;
   ObjectBoxImpl._create(this.store) {
-    box = store.box<SongsEntity>();
+    likedsong = store.box<SongsEntity>();
+    // final playlistsong = store.box<SongsEntity>();
   }
   static Future<ObjectBoxImpl> create() async {
     final docdir = await getApplicationCacheDirectory();

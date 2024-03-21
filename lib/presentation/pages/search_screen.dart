@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_app/presentation/pages/song_card_innerview_screen.dart';
 import 'package:music_app/presentation/providers/audio_player_provider.dart';
-import 'package:music_app/presentation/providers/create_playlist_provider.dart';
 import 'package:music_app/presentation/providers/play_list_provider.dart';
 import 'package:music_app/presentation/providers/search_provider.dart';
 import 'package:music_app/presentation/widgets/listtile_card_widget.dart';

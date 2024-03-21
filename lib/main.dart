@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/data/data-source/objectBox/objectbox_impl.dart';
-import 'package:music_app/presentation/pages/main_page.dart';
 import 'package:music_app/presentation/pages/splash_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -25,9 +24,6 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       home: const SplashScreen(),
-      // home: const MainPage(),
-      // home: const LiabraryWidget(),
-      // home: const BootomNavWidget(),
     );
   }
 }

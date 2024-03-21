@@ -209,7 +209,8 @@ class SongCardBtnsWidget extends ConsumerWidget {
                       },
                       icon: const Icon(
                         Icons.skip_previous_rounded,
-                        size: 40,
+                        size: 50,
+                        color: Colors.white,
                       ),
                     ),
                     FloatingActionButton.large(
@@ -237,7 +238,8 @@ class SongCardBtnsWidget extends ConsumerWidget {
                       },
                       icon: const Icon(
                         Icons.skip_next_rounded,
-                        size: 40,
+                        size: 50,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -253,27 +255,39 @@ class SongCardBtnsWidget extends ConsumerWidget {
                         // audioplayer.setAudioSource(playlist);
                         audioplayer.setShuffleModeEnabled(true);
                       },
-                      icon: const Icon(Icons.shuffle),
+                      icon: const Icon(
+                        Icons.shuffle,
+                        color: Colors.white,
+                      ),
                     ),
                     IconButton(
                       onPressed: () {
                         audioplayer.setLoopMode(LoopMode.one);
                       },
-                      icon: const Icon(Icons.repeat),
+                      icon: const Icon(
+                        Icons.repeat,
+                        color: Colors.white,
+                      ),
                     ),
                     IconButton(
                       onPressed: () {
                         audioplayer.seek(Duration(
                             seconds: audioplayer.position.inSeconds - 10));
                       },
-                      icon: const Icon(Icons.replay_10_rounded),
+                      icon: const Icon(
+                        Icons.replay_10_rounded,
+                        color: Colors.white,
+                      ),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        // Implement volume control functionality here
-                      },
-                      icon: const Icon(Icons.volume_up_rounded),
-                    ),
+                    // TODO:FOR INCREASING AND DECREASING SOUND
+                    // IconButton(
+                    //   onPressed: () {
+                    //     audioplayer.setVolume(5 + 1);
+
+                    //     // Implement volume control functionality here
+                    //   },
+                    //   icon: const Icon(Icons.volume_up_rounded),
+                    // ),
                   ],
                 ),
               ],

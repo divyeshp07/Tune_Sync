@@ -11,7 +11,7 @@ class FavSongScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<SongsEntity> favSongs = ref.watch(musicDbProvider);
+    List<SongsEntity> favSongs = ref.watch(faveSongDbProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +24,7 @@ class FavSongScreen extends ConsumerWidget {
                 'No favorite songs',
                 style: TextStyle(
                   fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  // fontWeight: FontWeight.bold,
                 ),
               ),
             )
@@ -45,12 +45,15 @@ class FavSongScreen extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: ListTile(
-                    leading: const CircleAvatar(),
+                    leading: const CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/images/ic_launcher.png'),
+                    ),
                     trailing: IconButton(
                       onPressed: () {
                         // Add functionality to remove from favorites
                         ref
-                            .read(musicDbProvider.notifier)
+                            .read(faveSongDbProvider.notifier)
                             .removeSongs(favSongs[index].id);
                       },
                       icon: const Icon(Icons.favorite, color: Colors.red),

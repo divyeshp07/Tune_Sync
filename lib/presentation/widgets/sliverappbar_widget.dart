@@ -11,29 +11,14 @@ class SliverAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      // leading: IconButton(
-      //   onPressed: leadingOnTap,
-      //   icon: const Icon(Icons.menu),
-      // ),
       pinned: true,
-      expandedHeight: 340.0,
+      expandedHeight: 348.0,
       flexibleSpace: ClipRRect(
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(50),
           bottomRight: Radius.circular(50),
         ),
         child: FlexibleSpaceBar(
-          title: Padding(
-            padding: const EdgeInsets.only(
-              left: 45.8,
-            ),
-            child: Text(
-              // 'Tidal',
-              '',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.pacifico(fontSize: 30, color: Colors.white),
-            ),
-          ),
           background: Stack(
             fit: StackFit.expand,
             children: [
@@ -64,7 +49,7 @@ class SliverAppBarWidget extends StatelessWidget {
                       radius: 125,
                       backgroundImage: AssetImage('assets/images/deb.jpg'),
                     ),
-                    const SizedBox(height: 10.0),
+                    const SizedBox(height: 20.0),
                   ],
                 ),
               ),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class PopupMenuWidget extends StatelessWidget {
-  final Function() share;
+  // final Function() share;
   final Function() addtofav;
   final Function() addtoplayist;
-  final Function() delete;
+  // final Function() delete;
   const PopupMenuWidget({
     super.key,
-    required this.share,
+    // required this.share,
     required this.addtofav,
     required this.addtoplayist,
-    required this.delete,
+    // required this.delete,
   });
 
   @override
@@ -20,17 +20,18 @@ class PopupMenuWidget extends StatelessWidget {
       offset: const Offset(0, 50),
       itemBuilder: (BuildContext context) {
         return [
-          PopupMenuItem(
-            onTap: () {},
-            value: 'Share',
-            child: const Row(
-              children: [
-                Icon(Icons.share, color: Colors.white),
-                SizedBox(width: 8),
-                Text('Share', style: TextStyle(color: Colors.white)),
-              ],
-            ),
-          ),
+          // TODO:SHARE SONG
+          // PopupMenuItem(
+          //   onTap: () {},
+          //   value: 'Share',
+          //   child: const Row(
+          //     children: [
+          //       Icon(Icons.share, color: Colors.white),
+          //       SizedBox(width: 8),
+          //       Text('Share', style: TextStyle(color: Colors.white)),
+          //     ],
+          //   ),
+          // ),
           PopupMenuItem(
             onTap: () {},
             value: 'Favorite',
@@ -53,17 +54,18 @@ class PopupMenuWidget extends StatelessWidget {
               ],
             ),
           ),
-          PopupMenuItem(
-            onTap: () {},
-            value: 'Delete',
-            child: const Row(
-              children: [
-                Icon(Icons.delete, color: Colors.white),
-                SizedBox(width: 8),
-                Text('Delete', style: TextStyle(color: Colors.white)),
-              ],
-            ),
-          ),
+          // TODO:DELETE SONG
+          // PopupMenuItem(
+          //   onTap: () {},
+          //   value: 'Delete',
+          //   child: const Row(
+          //     children: [
+          //       Icon(Icons.delete, color: Colors.white),
+          //       SizedBox(width: 8),
+          //       Text('Delete', style: TextStyle(color: Colors.white)),
+          //     ],
+          //   ),
+          // ),
         ];
       },
     );

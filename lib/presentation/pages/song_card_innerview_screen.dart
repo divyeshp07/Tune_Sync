@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/presentation/providers/audio_player_provider.dart';
 import 'package:music_app/presentation/widgets/progressbar_widget.dart';
 import 'package:music_app/presentation/widgets/songcardinnerviewbuttons_widget.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class SongCardInnerScreen extends ConsumerWidget {
@@ -58,7 +57,8 @@ class SongCardInnerScreen extends ConsumerWidget {
                       builder: (context, snapshot) {
                         return TextScroll(
                           displaytext[snapshot.data ?? 0],
-                          style: const TextStyle(fontSize: 20),
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.black),
                           mode: TextScrollMode.endless,
                           velocity:
                               const Velocity(pixelsPerSecond: Offset(40, 0)),

@@ -5,19 +5,19 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'fav_add_remove_use_case.g.dart';
 
 @riverpod
-class MusicDb extends _$MusicDb {
+class FaveSongDb extends _$FaveSongDb {
   @override
   List<SongsEntity> build() {
-    return ObjectBoxImpl.box.getAll();
+    return ObjectBoxImpl.likedsong.getAll();
   }
 
   void addSongs(SongsEntity song) {
-    ObjectBoxImpl.box.put(song);
-    state = ObjectBoxImpl.box.getAll();
+    ObjectBoxImpl.likedsong.put(song);
+    state = ObjectBoxImpl.likedsong.getAll();
   }
 
   void removeSongs(int id) {
-    ObjectBoxImpl.box.remove(id);
-    state = ObjectBoxImpl.box.getAll();
+    ObjectBoxImpl.likedsong.remove(id);
+    state = ObjectBoxImpl.likedsong.getAll();
   }
 }
