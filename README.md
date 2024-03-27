@@ -14,20 +14,28 @@ Share: Share your favorite tracks and playlists with friends and family.
 
 ## Technologies Used
 Frontend: Dart,Flutter
-Installation
+
+## Installation
 To run TuneSync locally, follow these steps:
 
 Clone this repository to your local machine.
+
 Install dependencies using npm install.
+
 Configure environment variables for API keys and other sensitive information.
+
 Start the development server with npm start.
-Contributing
+
+## Contributing
 We welcome contributions from the community to make TuneSync even better! If you'd like to contribute, please follow these guidelines:
 
-Fork the repository.
+## Fork the repository.
 Create a new branch for your feature or bug fix.
+
 Commit your changes with descriptive messages.
+
 Push your changes to your fork.
+
 Submit a pull request to the main branch of the original repository.
 
 
