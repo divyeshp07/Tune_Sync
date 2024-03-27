@@ -35,4 +35,4 @@ We welcome contributions from the community to make TuneSync even better! If you
 
 ## Contact
 
-If you have any questions or suggestions regarding TuneSync, feel free to contact us at divyesh5262@gmail.com.
+If you have any questions or suggestions regarding TuneSync, feel free to connect me at divyesh5262@gmail.com.
