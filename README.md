@@ -3,9 +3,13 @@
 
 ## Features
 Discover: Explore a vast library of songs from various genres and artists.
+
 Create Playlists: Build customized playlists to suit your mood or occasion.
+
 Sync: Seamlessly synchronize your playlists across devices for uninterrupted music enjoyment.
+
 Recommendations: Receive personalized recommendations based on your listening habits and preferences.
+
 Share: Share your favorite tracks and playlists with friends and family.
 
 ## Technologies Used
