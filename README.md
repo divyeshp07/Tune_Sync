@@ -1,3 +1,3 @@
-# music_app
+# Tune-Sync
 
 A new Flutter project.
